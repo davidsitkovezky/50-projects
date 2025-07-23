@@ -1,57 +1,91 @@
-@import url('https://fonts.googleeapis.com/css?family=muli&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 
+:root{
+    --line-border-fill:#3498db;
+    --line-border-empty:#e0e0e0;
+}
 * {
-    box-sizing:border-box;
+  box-sizing: border-box;
+}
+body {
+  background-color: #f6f7fb;
+  font-family: "muli", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+.container {
+  text-align: center;
+}
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+  max-width: 100%;
+  width: 350px;
+} 
+
+.progress-container::before{
+    content:'';
+    background-color:var(--line-border-empty);
+    position:absolute;
+    top:50%;
+    left:0;
+    transform:translateY(-50%);
+    height:4px;
+    width:100%;
+    z-index:-1;
 }
 
-body{
-    font-family:'muli', sans-serif;
+.progress {
+  background-color: var(--line-border-fill);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 0%;
+  z-index: -1;
+  transition: 0.4s ease;
+}
+.circle{
+    background-color:#fff;
+    color:#999;
+    border-radius:50%;
+    height:30px;
+    width:30px;
     display:flex;
     align-items: center;
-    justify-content: center;
-    height:100vh;
-    overflow:hidden;
-    margin:0;
-    background-color:gray;
+    justify-content:center;
+    border:3px solid var(--line-border-empty);
+    transition: 0.4s ease;
 }
-.container{
-    display:flex;
-    width:90vw;
+.circle.active{
+    border-color:var(--line-border-fill);
 }
-.panel{
-    background-size:auto 100%;
-    background-position-x: center;
-    background-repeat: no-repeat;
-    height:80vh;
-    border-radius:50px;
-    color:#121212;
+
+.btn{
+    background-color:var(--line-border-fill);
+    color:#fff;
+    border:0;
+    border-radius:6px;
     cursor:pointer;
-    flex:0.5;
-    margin:10px;
-    position:relative;
-    transition:flex 1s ease-out; 
+    font-family:inherit;
+    padding:8px 30px;
+    margin:5px;
+    font-size:14px;
 }
-
-.panel h3{
-    font-size:24px;
-    position:absolute;
-    bottom:20px;
-    left:20px;
-    margin:0;
-    opacity:0;
+.btn:active{
+    transform:scale(0.98);
 }
-
-.panel.active{
-    flex:5;
+.btn:focus{
+    outline:0;
 }
-.panel.active h3{
-    opacity:1;
-}
-@media(max-width:680px){
-    .container{
-        width:100vw;
-    }
-    .panel:nth-of-type(4),.panel:nth-of-type(5){
-        display:none;
-    }
+.btn:disabled{
+    background-color:var(--line-border-empty);
+    cursor:not-allowed;
 }
